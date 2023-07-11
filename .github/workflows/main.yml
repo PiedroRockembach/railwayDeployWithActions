@@ -28,4 +28,4 @@ jobs:
       - name: Set up Railway
         run: railway run
         env:
-          RAILWAY_TOKEN: ${{ env.RAILWAY_TOKEN }}
+          RAILWAY_TOKEN: ${secrets.RAILWAY_TOKEN}
