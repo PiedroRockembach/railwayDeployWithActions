@@ -13,22 +13,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
-          python-version: 3.8
+          node-version: 20
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: npm ci
 
       - name: Run tests
-        run: pytest ./tests --cov=./tests
+        run: npm test -- --coverage
 
       - name: Upload test coverage
         uses: actions/upload-artifact@v2
         with:
           name: coverage
-          path: ./tests/htmlcov
+          path: ./coverage
 
   deploy:
     needs: build
@@ -47,3 +47,4 @@ jobs:
 
       - name: Deploy to Railway
         run: railway up
+
